@@ -153,7 +153,7 @@ const fetchLead = (requestBody, callback) => {
   let sqlStr ='';
   
   console.log(date)
-  if(monthID || year || IsInterested){
+  if(monthID || year || IsInterested || date){
         sqlStr+=" WHERE ";
   }
 
@@ -175,6 +175,7 @@ const fetchLead = (requestBody, callback) => {
 
   sqlStr+= `${date ? "date(created_at) = '"+date+"'" : ""}`;
 
+  // console.log(sqlStr)
   const sql = `select * from leads ${sqlStr}`;
   db.query(sql, (err, results) => {
        if(err) return callback(err, null);
